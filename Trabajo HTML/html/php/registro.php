@@ -1,5 +1,5 @@
 <?php
-  $conexion = new mysqli("localhost", "root", "PON TU CONTRASENA", "COMPUSHOP");
+  $conexion = new mysqli("localhost", "root", "jsdfh", "COMPUSHOP");
   if ($conexion->connect_errno){
     echo "ERROR: (" . $conexion->connect_errno .")" . $conexion->connect_error;
   }
