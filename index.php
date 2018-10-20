@@ -1,8 +1,9 @@
+
 <?php 
-echo 'HOLA WEI';
-
+echo '<script language="javascript">';
+'holA WEI'
+'</script>';
 ?>
-
 
 <html>
   <head>

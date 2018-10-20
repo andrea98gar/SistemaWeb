@@ -1,6 +1,4 @@
-<script type="text/javascript">
-
-  function comprobardatos(){
+function comprobardatos(){
     var nombre = document.getElementById("nombre").value;
     
     window.alert(nombre);
@@ -11,6 +9,3 @@
     var password = document.forms["identificacion"].pass.value;
     alert("username");
   }
-}
-
-</script>
