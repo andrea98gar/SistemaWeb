@@ -1,6 +1,6 @@
 
   function comprobardatos(){
-    var nombre = document.getElementById("nombre").value;
+    /*var nombre = document.getElementById("nombre").value;ç*/
 
     window.alert("hola");
   }

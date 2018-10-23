@@ -23,34 +23,29 @@
 
     <body>
       <h1> Registro </h1>
-          <form class="registro" action="php/registro.php" method="POST">
+          <form class="registro" action="registro.php" method="POST" onsubmit="comprobardatos()">
               <label>Nombre</label><br>
-              <input type="text" id="nombre" placeholder="Introduzca su nombre"><br><br>
+              <input type="text" name="nombre" placeholder="Introduzca su nombre"><br><br>
               <label>Apellidos</label><br>
-              <input type="text" id="apellidos" placeholder="Introduzca sus apellidos"><br><br>
+              <input type="text" name="apellidos" placeholder="Introduzca sus apellidos"><br><br>
               <label>DNI</label><br>
-              <input type="text" id="dni" placeholder="Introduzca su DNI"><br><br>
+              <input type="text" name="dni" placeholder="Introduzca su DNI"><br><br>
               <label>Teléfono</label><br>
-              <input type="tel" id="telefono" placeholder="Introduzca su teléfono"><br><br>
+              <input type="tel" name="telefono" placeholder="Introduzca su teléfono"><br><br>
               <label>Fecha de nacimiento (dd-mm-aaaa)</label><br>
-              <input type="date" id="fecha" placeholder="Introduzca su fecha de nacimiento"><br><br>
+              <input type="date" name="fecha" placeholder="Introduzca su fecha de nacimiento"><br><br>
               <label>E-mail</label><br>
-              <input type="email" id="email" placeholder="Introduzca su e-mail"><br><br>
+              <input type="email" name="email" placeholder="Introduzca su e-mail"><br><br>
               <label for="upass">Nombre de usuario</label><br>
-              <input type="text" id="usuario" placeholder="Introduzca su nombre de usuario"><br><br>
+              <input type="text" name="usuario" placeholder="Introduzca su nombre de usuario"><br><br>
               <label>Contraseña</label><br>
-              <input type="password" id="contra1" placeholder="Introduzca su contraseña"><br><br>
+              <input type="password" name="contra1" placeholder="Introduzca su contraseña"><br><br>
               <label for="upass">Repita la contraseña</label><br>
-              <input type="password" id="contra2" placeholder="Introduzca su contraseña"><br>
+              <input type="password" name="contra2" placeholder="Introduzca su contraseña"><br>
               <br><br>
-              <input type="submit" value="Registrarse" onclick="comprobardatos()">
-
-
-
-
+              <input type="submit" value="Registrarse">
 
             </form>
-
     </body>
   </body>
 

@@ -3,11 +3,19 @@
   if ($conexion->connect_errno){
     echo "ERROR: (" . $conexion->connect_errno .")" . $conexion->connect_error;
   }
-  $resultado = $conexion->query("INSERT INTO USUARIOS VALUES ('usuario1', 'contrasena', 'nombre', 'apellidos', 'dni', 123, 'fecha', 'email')");
+  $usuario = $_POST['usuario'];
+  $contrasena = $_POST['contra1'];
+  $nombre = $_POST['nombre'];
+  $apellidos = $_POST['apellidos'];
+  $dni = $_POST['dni'];
+  $tel = $_POST['telefono'];
+  $fecha = $_POST['fecha'];
+  $email = $_POST['email'];
+  $resultado = $conexion->query("INSERT INTO USUARIOS VALUES ('$nombre', '$contrasena', '$nombre', '$apellidos', '$dni', '$fecha', '$email',  '$tel')");
   mysqli_close($conexion);
 ?>
 
-<!--<html>
+<html>
   <head>
       <title>
           ProyectoSeguridad
@@ -16,10 +24,10 @@
       <script type="text/javascript" src="js/index.js"></script>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-  </head>-->
+  </head>
 
   <!--HEADER https://www.w3schools.com/howto/howto_css_responsive_header.asp-->
-<!--  <div class="header">
+  <div class="header">
     <a href="#default" class="logo">Compushop</a>
     <div class="header-right">
       <a href="index.html">Listado</a>
@@ -29,10 +37,10 @@
   </div>
 
   <body>
-
+    Registro completado.
 
   </body>
 
 
 
-</html> -->
+</html>
