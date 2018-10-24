@@ -11,7 +11,7 @@
   $tel = $_POST['telefono'];
   $fecha = $_POST['fecha'];
   $email = $_POST['email'];
-  $resultado = $conexion->query("INSERT INTO USUARIOS VALUES ('$nombre', '$contrasena', '$nombre', '$apellidos', '$dni', '$fecha', '$email',  '$tel')");
+  $resultado = $conexion->query("INSERT INTO USUARIOS VALUES ('$usuario', '$contrasena', '$nombre', '$apellidos', '$dni', '$tel', '$fecha', '$email')");
   mysqli_close($conexion);
 ?>
 
