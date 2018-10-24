@@ -29,7 +29,7 @@
           <div class="header">
             <a href="#default" class="logo">Compushop</a>
             <div class="header-right">
-              <a href="listado.php">Listado</a>
+              <a href="index.php">Listado</a>
               <a class="active" href="ajustes.html">Ajustes</a>
             </div>
           </div>

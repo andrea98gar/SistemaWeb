@@ -13,17 +13,12 @@
   <div class="header">
     <a href="#default" class="logo">Compushop</a>
     <div class="header-right">
-      <a class="active" href="listado.php">Listado</a>
-      <script>
-        if (document.referrer) //si es verdadero quiere decir que vienes de algun lado
-          alert("Aqui vienes desde: " + document.referrer);
-          <a href="ajustes.html">Ajustes</a>
-        else
-          alert("Aqui entras directamente");
-          <a href="signin.html">Sign in</a>
-          <a href="signup.html">Sign up</a>
-      </script>
+      <a class="active" href="index.php">Listado</a>
 
+      <!--<a href="ajustes.html">Ajustes</a>-->
+      <a href="signin.html">Sign in</a>
+      <a href="signup.html">Sign up</a>
+    
     </div>
   </div>
 
