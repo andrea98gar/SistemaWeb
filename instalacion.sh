@@ -9,8 +9,8 @@ then
      echo "Realizando copia de seguridad..."
      sudo cp /etc/apache2/sites-enabled/000-default.conf /etc/apache2/sites-enabled/000-default.conf.backup
 fi
-sudo cd /var/www
-sudo git clone https://github.com/andrea98gar/php.git
+#sudo cd /var/www
+#sudo git clone https://github.com/andrea98gar/php.git
 sudo sed 's|/var/www/html|/var/www/php|' /etc/apache2/sites-enabled/000-default.conf > /tmp/tmp.conf
 sudo mv /tmp/tmp.conf /etc/apache2/sites-enabled/000-default.conf
 
