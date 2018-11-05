@@ -1,53 +1,26 @@
 <?php
-  $conexion = new mysqli("localhost", "root", "MetlG0710", "COMPUSHOP");
-  if ($conexion->connect_errno){
-    echo "ERROR: (" . $conexion->connect_errno .")" . $conexion->connect_error;
-  }
+  include("config.php");
+  session_start();
 
-  $usuario = $_POST['usuario'];
-  $contrasena = $_POST['contra'];
+  if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $usuario = $_POST['usuario'];
+    $contrasena = $_POST['contra'];
 
-  $consulta = "SELECT EXISTS (SELECT * FROM USUARIOS WHERE Usuario='$usuario' && Contrasena='$contrasena' LIMIT 1 )";
+    $sql = "SELECT * FROM USUARIOS WHERE Usuario='$usuario' && Contrasena='$contrasena'";
+    $resul = mysqli_query($conexion,$sql);
+    $row = mysqli_fetch_array($resul,MYSQLI_ASSOC);
+    $active = $row['active'];
+    $count = mysqli_num_rows($resul);
+    #echo ""  + $count;
+
+    if ($count==1){
+      iniciarSesion($usuario);
+      echo '<script type="text/javascript"> window.location = "usuario.php";</script>';
+    }else{
+      echo "<script type='text/javascript'>alert('Usuario no existe');</script>";
+      echo '<script type="text/javascript"> window.location = "signin.html";</script>';
+     }
+   }
 
 
-  if($resultado = $conexion->query($consulta)){
-    while ($fila = $resultado->fetch_row()){
-      if ($fila[0] == 1){
         ?>
-        <html>
-          <head>
-              <title>
-                  ProyectoSeguridad
-              </title>
-              <link rel="stylesheet" type="text/css" href="css/index.css">
-              <script type="text/javascript" src="js/index.js"></script>
-              <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-          </head>
-
-          <!--HEADER https://www.w3schools.com/howto/howto_css_responsive_header.asp-->
-          <div class="header">
-            <a href="#default" class="logo">Compushop</a>
-            <div class="header-right">
-              <a href="index.php">Listado</a>
-              <a class="active" href="ajustes.html">Ajustes</a>
-            </div>
-          </div>
-
-          <body>
-            Registro completado.
-
-          </body>
-        </html>
-
-        <?PHP
-
-
-
-
-      }
-    }
-    $resultado->close();
-  }
-  mysqli_close($conexion);
-?>

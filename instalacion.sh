@@ -2,17 +2,9 @@
 sudo apt install apache2 -y
 
 #Configurar apache2
-busqueda=`sudo find /etc/apache2/sites-enabled/000-default.conf.backup`
-echo $busqueda | grep -q "/etc/apache2/sites-enabled/000-default.conf.backup"
-if test $? != 0
-then
-     echo "Realizando copia de seguridad..."
-     sudo cp /etc/apache2/sites-enabled/000-default.conf /etc/apache2/sites-enabled/000-default.conf.backup
-fi
-#sudo cd /var/www
-#sudo git clone https://github.com/andrea98gar/php.git
-sudo sed 's|/var/www/html|/var/www/php|' /etc/apache2/sites-enabled/000-default.conf > /tmp/tmp.conf
-sudo mv /tmp/tmp.conf /etc/apache2/sites-enabled/000-default.conf
+sudo cd /var/www
+sudo git clone https://github.com/andrea98gar/php.git
+sudo sed 's|/var/www/html|/var/www/php|' /etc/apache2/sites-enabled/000-default.conf
 
 #Instalar php
 sudo apt-get install php libapache2-mod-php -y
@@ -34,7 +26,7 @@ sudo mysql -u root
 
 #exit
 sudo cd /var/www/php/
-sudo mysql -u root -p <sqlscript.sql
+sudo mysql -u root <sqlscript.sql
 
 sudo systemctl restart apache2.service
 sudo systemctl restart mysql.service

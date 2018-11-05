@@ -2,7 +2,6 @@
   include("config.php");
   session_start();
 
-
 ?>
 
 <html>
@@ -20,13 +19,22 @@
   <div class="header">
     <a href="#default" class="logo">Compushop</a>
     <div class="header-right">
-      <a class="active" href="index.php">Productos</a>
-      <?php menu(); ?>
+      <a  href="index.php">Productos</a>
+      <a class="active" href="usuario.html">Usuario</a>
     </div>
   </div>
 
   <body>
 
+    <input type="submit" class="button" name="cerrarsesion" onclick="cerrarSesion()">
+    <script>
+      function cerrarSesion(){
+        alert('<?php echo cerrarSesion();?>')
+        window.location = "index.php";
+      }
+    </script>
+
+    <?php echo $valor ?>
   </body>
 
 

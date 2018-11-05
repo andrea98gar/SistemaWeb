@@ -1,12 +1,19 @@
+function comprobardatos(){
+    var nombre = document.getElementById("nombre").value;
 
-  function comprobardatos(){
-    /*var nombre = document.getElementById("nombre").value;ç*/
-
-    window.alert("hola");
+    window.alert(nombre );
   }
 
   function comprobarBD(){
     var username = document.forms["identificacion"].username.value;
     var password = document.forms["identificacion"].pass.value;
     alert("username");
+  }
+
+  function cerrarSesion(){
+
+
+    window.location="index.php";
+
+
   }
