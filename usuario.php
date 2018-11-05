@@ -20,7 +20,7 @@
     <a href="#default" class="logo">Compushop</a>
     <div class="header-right">
       <a  href="index.php">Productos</a>
-      <a class="active" href="usuario.html">Usuario</a>
+      <a class="active" href="usuario.php">Usuario</a>
     </div>
   </div>
 

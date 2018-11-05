@@ -22,7 +22,7 @@
 
     if ($count==0){
       $result2 = $conexion->query("INSERT INTO USUARIOS VALUES ('$usuario', '$contrasena', '$nombre', '$apellidos', '$dni', '$tel', '$fecha', '$email')");
-      echo '<script type="text/javascript"> window.location = "usuario.html";</script>';
+      echo '<script type="text/javascript"> window.location = "usuario.php";</script>';
     }else{
       echo "<script type='text/javascript'>alert('Usuario existente');</script>";
       echo '<script type="text/javascript"> window.location = "signup.html";</script>';
