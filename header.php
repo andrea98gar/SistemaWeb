@@ -1,4 +1,7 @@
-<?php session_start() ?>
+<?php
+  //Esto nos permite guardar variables de sesion (identificación)
+  session_start()
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -24,19 +27,25 @@
         </ul>
         </nav>
         <div class = "header-login">
-          <form action="includes/login.inc.php" method="post">
-            <input type="text" name="usuario" placeholder="Usuario">
-            <input type="password" name="contra" placeholder="Constraseña">
-            <button type="submit" name="login-submit"> Acceder </button>
-          </form>
-          <div class="header-signup">
-            <a href="signup.php"> Registro </a>
-          </div>
-          <form action="includes/logout.inc.php" method="post">
-            <button type="submit" name="logout-submit"> Cerrar Sesión </button>
-          </form>
+          <?php
+              if (!isset($_SESSION['userId'])) {
+                  echo '
+                    <form action="includes/login.inc.php" method="post">
+                      <input type="text" name="usuario" placeholder="Usuario">
+                      <input type="password" name="contra" placeholder="Constraseña">
+                      <button type="submit" name="login-submit"> Acceder </button>
+                    </form>
+                    <div class="header-signup">
+                      <a href="signup.php"> Registro </a>
+                    </div>';
+              }else if (isset($_SESSION['userId'])) {
+                  echo '
+                    <form action="includes/logout.inc.php" method="post">
+                      <button type="submit" name="logout-submit"> Cerrar Sesión </button>
+                    </form>';
+              }
+            ?>
         </div>
-
       </header>
     </body>
-    </html>
+</html>

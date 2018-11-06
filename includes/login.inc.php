@@ -7,17 +7,20 @@ if (isset($_POST['login-submit'])) {
   $contrasena = $_POST['contra'];
 
   if (empty($usuario) || empty($contrasena)) {
-    echo "erro1";
     header("Location: ../index.php?error=emptyfields");
     exit();
   }
   else {
 
-    $sql = "SELECT * FROM USUARIOS WHERE Usuario=? && Contrasena=?";
+
+    //Necesitamos coger la contraseña del usuario de la BBDD,
+    // lo desencriptamos y comprobamos si es igual a la que ha introducido
+
+    $sql = "SELECT * FROM USUARIOS WHERE Usuario=?";
     $stmt = mysqli_stmt_init($conexion);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-      header("Location: ../index.php?error=sqlerror2");
+      header("Location: ../index.php?error=sqlerror");
       exit();
     }
     else {
@@ -26,13 +29,14 @@ if (isset($_POST['login-submit'])) {
       mysqli_stmt_execute($stmt);
       $result = mysqli_stmt_get_result($stmt);
       if ($row = mysqli_fetch_assoc($result)) {
+        //Comprobamos que la contraseña obtenida de la BBDD coincida con la introducida
         $pwdCheck = password_verify($contrasena, $row['Contrasena']);
         if ($pwdCheck == false) {
           header("Location: ../index.php?error=wrongpwd");
           exit();
         }
         else if ($pwdCheck == true) {
-
+          //Creamos variables de sesión para saber que el usuario se ha identificado.
           session_start();
           $_SESSION['userId'] = $row['Usuario'];
           header("Location: ../index.php?login=success");
@@ -40,7 +44,6 @@ if (isset($_POST['login-submit'])) {
         }
       }
       else {
-        echo "erro5";
         header("Location: ../index.php?login=wronguidpwd");
         exit();
       }
@@ -50,7 +53,6 @@ if (isset($_POST['login-submit'])) {
   mysqli_close($conn);
 }
 else {
-  echo "string";
   header("Location: ../sfdsf.php");
   exit();
 }

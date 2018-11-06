@@ -69,7 +69,7 @@ if (isset($_POST['signup-submit'])) {
               //Encriptar contraseña
               $hashedPwd = password_hash($contrasena, PASSWORD_DEFAULT);
               //Enlazamos
-              mysqli_stmt_bind_param($stmt, "sssssiss", $usuario, $contrasena, $nombre,$apellidos,$dni,$tel,$fecha,$email);
+              mysqli_stmt_bind_param($stmt, "sssssiss", $usuario, $hashedPwd, $nombre,$apellidos,$dni,$tel,$fecha,$email);
               //Ejecutamos
               mysqli_stmt_execute($stmt);
               //Redirigimos
