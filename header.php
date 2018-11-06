@@ -1,6 +1,6 @@
 <?php
   //Esto nos permite guardar variables de sesion (identificación)
-  session_start()
+  session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,6 +40,9 @@
                     </div>';
               }else if (isset($_SESSION['userId'])) {
                   echo '
+                    <form action="includes/usuario.inc.php" method="post">
+                      <button type="submit" name="config-submit"> Configuración </button>
+                    </form>
                     <form action="includes/logout.inc.php" method="post">
                       <button type="submit" name="logout-submit"> Cerrar Sesión </button>
                     </form>';

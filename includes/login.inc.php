@@ -39,6 +39,8 @@ if (isset($_POST['login-submit'])) {
           //Creamos variables de sesión para saber que el usuario se ha identificado.
           session_start();
           $_SESSION['userId'] = $row['Usuario'];
+          // Caduca en un año
+          setcookie('usuario', $row['Usuario'], time() + 365 * 24 * 60 * 60);
           header("Location: ../index.php?login=success");
           exit();
         }
