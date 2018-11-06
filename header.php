@@ -6,7 +6,7 @@
     <meta name = "description" content="Web">
     <meta name="viewport" content="with=device-width, initial-scale=1">
     <title> </title>
-    <link rel="stylesheet" href="css/style.css"
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
 

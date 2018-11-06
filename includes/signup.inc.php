@@ -1,7 +1,5 @@
 <?php
 
-
-
 if (isset($_POST['signup-submit'])) {
 
   require "config.inc.php";
