@@ -254,10 +254,22 @@ h1 {
   padding-top: 20px;
   width: 100px;
   text-align: center;
-  margin-left: 20%;
+  margin-left: 10%;
   padding-left: 0.5em;
 }
 
+.table-show-products input {
+  width: calc(100% - 30px);
+  height: 30px;
+  padding: 0 15px;
+  margin-bottom: 6px;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  background-color: #F6F6F6;
+  float: left;
+  font-family: arial;
+
+}
 
 .table-show-products table {
   width: calc(100% - 30px);

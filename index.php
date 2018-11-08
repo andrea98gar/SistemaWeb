@@ -15,7 +15,7 @@
           <div class = "form-add-product">
 
             <form action="includes/products.inc.php" method="post">
-
+              
               <input type="text" name="modelo" placeholder="Modelo">
               <input type="text" name="ram" placeholder="RAM">
               <input type="text" name="bateria" placeholder="Bateria">
