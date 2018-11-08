@@ -67,9 +67,9 @@ if (isset($_POST['signup-submit'])) {
             else {
               //HAY QUE CAMBIAR LA COLUMNA DE CONTRASEÑA POR UNA MÁS LARGA
               //Encriptar contraseña
-              $hashedPwd = password_hash($contrasena, PASSWORD_DEFAULT);
+              //$hashedPwd = password_hash($contrasena, PASSWORD_DEFAULT);
               //Enlazamos
-              mysqli_stmt_bind_param($stmt, "sssssiss", $usuario, $hashedPwd, $nombre,$apellidos,$dni,$tel,$fecha,$email);
+              mysqli_stmt_bind_param($stmt, "sssssiss", $usuario, $contrasena, $nombre,$apellidos,$dni,$tel,$fecha,$email);
               //Ejecutamos
               mysqli_stmt_execute($stmt);
               //Redirigimos
@@ -83,8 +83,6 @@ if (isset($_POST['signup-submit'])) {
 
 
  // Cerramos el statement y la conexion con la db
- mysqli_stmt_close($stmt);
- mysqli_close($conexion);
  }
  else {
  // Si el usuario trata de acceder a esta página de alguna manera inapropiada

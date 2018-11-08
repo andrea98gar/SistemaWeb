@@ -30,12 +30,12 @@ if (isset($_POST['login-submit'])) {
       $result = mysqli_stmt_get_result($stmt);
       if ($row = mysqli_fetch_assoc($result)) {
         //Comprobamos que la contraseña obtenida de la BBDD coincida con la introducida
-        $pwdCheck = password_verify($contrasena, $row['Contrasena']);
-        if ($pwdCheck == false) {
+        //$pwdCheck = password_verify($contrasena, $row['Contrasena']);
+        if ($contrasena !== $row['Contrasena']) {
           header("Location: ../index.php?error=wrongpwd");
           exit();
         }
-        else if ($pwdCheck == true) {
+        else {
           //Creamos variables de sesión para saber que el usuario se ha identificado.
           session_start();
           $_SESSION['userId'] = $row['Usuario'];
@@ -51,8 +51,6 @@ if (isset($_POST['login-submit'])) {
       }
     }
   }
-  mysqli_stmt_close($stmt);
-  mysqli_close($conn);
 }
 else {
   header("Location: ../sfdsf.php");
