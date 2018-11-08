@@ -14,6 +14,24 @@ if (isset($_POST['signup-submit'])) {
    $fecha = $_POST['fecha'];
    $email = $_POST['email'];
 
+
+   //Comprobar DNI
+   $num = substr($dni, 0, 8);
+   $char = substr($dni, -1);
+
+   $resto = $num % 23;
+   if (!($resto == 0 && $char == 'T') && !($resto == 1 && $char == 'R') && !($resto == 2 && $char == 'W') && !($resto == 3 && $char == 'A') &&
+   !($resto == 4 && $char == 'G') && !($resto == 5 && $char == 'M') && !($resto == 6 && $char == 'Y') && !($resto == 7 && $char == 'F') &&
+   !($resto == 8 && $char == 'P') && !($resto == 9 && $char == 'D') && !($resto == 10 && $char == 'X') && !($resto == 11 && $char == 'B') &&
+   !($resto == 12 && $char == 'N') && !($resto == 13 && $char == 'J') && !($resto == 14 && $char == 'Z') && !($resto == 15 && $char == 'S') &&
+   !($resto == 16 && $char == 'Q') && !($resto == 17 && $char == 'V') && !($resto == 18 && $char == 'H') && !($resto == 19 && $char == 'L') &&
+   !($resto == 20 && $char == 'C') && !($resto == 21 && $char == 'K') && !($resto == 22 && $char == 'E') ) {
+     header("Location: ../signup.php?error=wrongdni");
+     exit();
+   }
+
+
+   //Comprobar que todos los campos estén rellenos
    if (empty($usuario) || empty($email) || empty($contrasena) || empty($contrasena2)
         || empty($nombre) || empty($apellidos) || empty($dni) || empty($tel) || empty($fecha)) {
      header("Location: ../signup.php?error=emptyfields");
@@ -69,7 +87,7 @@ if (isset($_POST['signup-submit'])) {
               //Encriptar contraseña
               //$hashedPwd = password_hash($contrasena, PASSWORD_DEFAULT);
               //Enlazamos
-              mysqli_stmt_bind_param($stmt, "sssssiss", $usuario, $contrasena, $nombre,$apellidos,$dni,$tel,$fecha,$email);
+              mysqli_stmt_bind_param($stmt, "sssssiss", $usuario, $contrasena, $nombre,$apellidos,$resto,$tel,$fecha,$email);
               //Ejecutamos
               mysqli_stmt_execute($stmt);
               //Redirigimos

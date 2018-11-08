@@ -5,17 +5,10 @@
   <main>
     <div class="wrapper-main">
       <section class="section-default">
-        <?php
-          if (isset($_SESSION['userId'])) {
-            echo '<p class="login-status"> Entro </p>';
-          }else {
-            echo '<p class="login-status"> Fuera </p>';          }
-          ?>
 
           <div class = "form-add-product">
-
             <form action="includes/products.inc.php" method="post">
-              
+
               <input type="text" name="modelo" placeholder="Modelo">
               <input type="text" name="ram" placeholder="RAM">
               <input type="text" name="bateria" placeholder="Bateria">
@@ -35,7 +28,6 @@
                     <th>Procesador</th>
                     <th>Precio</th>
                     <th></th>
-
                 </tr>
 
                   <?php

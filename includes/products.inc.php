@@ -7,12 +7,11 @@ if(isset($_POST['productm'])) {
     $product_new = $_POST['pmodelo'];
     $ram_new = $_POST['pram'];
     $bat_new = $_POST['pbat'];
-    $proc_new = $_POST['pproc'];;
-    $prec_new = $_POST['pprec'];;
+    $proc_new = $_POST['pproc'];
+    $prec_new = $_POST['pprec'];
 
     $sql2 = "UPDATE PRODUCTOS SET Modelo = ?, RAM = ?, Bateria = ?, Procesador = ?, Precio = ?  WHERE Modelo = ?";
 
-        // echo "hola";
         $stmt = mysqli_stmt_init($conexion);
         // Comprobamos si hay algun problema con el comando sql
         if (!mysqli_stmt_prepare($stmt, $sql2)) {

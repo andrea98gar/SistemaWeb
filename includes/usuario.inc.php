@@ -1,31 +1,36 @@
 <?php
 require "config.inc.php";
-
 if (isset($_POST['update-submit'])) {
-
     $usuario = $_SESSION['userId'];
-    $contrasena = $_POST['contra1'];
-    $contrasena2 = $_POST['contra2'];
+
     $nombre = $_POST['nombre'];
     $apellidos = $_POST['apellidos'];
     $dni = $_POST['dni'];
-    $tel = $_POST['tel'];
+    $tel = $_POST['telefono'];
     $fecha = $_POST['fecha'];
     $email = $_POST['email'];
 
-    if (empty($email) || empty($contrasena) || empty($contrasena2)
-        || empty($nombre) || empty($apellidos) || empty($dni) || empty($tel) || empty($fecha)) {
-        header("Location: ../usuario.php?error=emptyfields");
-        exit();
-    } else if ($contrasena !== $contrasena2) {
-        //header("Location: ../signup.php?error=passwordcheck&uid=".$username."&mail=".$email);
+    //Comprobar DNI
+    $num = substr($dni, 0, 8);
+    $char = substr($dni, -1);
 
-        header("Location: ../usuario.php?error=passwordcheck");
+    $resto = $num % 23;
+    if (!($resto == 0 && $char == 'T') && !($resto == 1 && $char == 'R') && !($resto == 2 && $char == 'W') && !($resto == 3 && $char == 'A') &&
+    !($resto == 4 && $char == 'G') && !($resto == 5 && $char == 'M') && !($resto == 6 && $char == 'Y') && !($resto == 7 && $char == 'F') &&
+    !($resto == 8 && $char == 'P') && !($resto == 9 && $char == 'D') && !($resto == 10 && $char == 'X') && !($resto == 11 && $char == 'B') &&
+    !($resto == 12 && $char == 'N') && !($resto == 13 && $char == 'J') && !($resto == 14 && $char == 'Z') && !($resto == 15 && $char == 'S') &&
+    !($resto == 16 && $char == 'Q') && !($resto == 17 && $char == 'V') && !($resto == 18 && $char == 'H') && !($resto == 19 && $char == 'L') &&
+    !($resto == 20 && $char == 'C') && !($resto == 21 && $char == 'K') && !($resto == 22 && $char == 'E') ) {
+      header("Location: ../usuario.php?error=wrongdni");
+      exit();
+    }
+
+    if (empty($email) || empty($nombre) || empty($apellidos) || empty($dni) || empty($tel) || empty($fecha)) {
+        header("Location: ../usuario.php?error=emptyfields");
         exit();
     } else {
         //Para evitar sqlinjection
         $sql = "SELECT * FROM USUARIOS WHERE Usuario=?";
-
         $stmt = mysqli_stmt_init($conexion);
         // Comprobamos si hay algun problema con el comando sql
         if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -50,31 +55,23 @@ if (isset($_POST['update-submit'])) {
                 exit();
             } else {
                 // A partir de aquí se supone que el usuario ha hecho todo bien
-
-                $sql = "INSERT INTO USUARIOS (Contrasena, Nombre, Apellidos, DNI, Tel, Fecha, email) VALUES (?, ?,?,?,?,?,?)";
-
+                $sql1 = "UPDATE USUARIOS SET Nombre = ?, Apellidos = ?, DNI = ?, Tel = ?, Fecha = ?, email = ? WHERE Usuario = ?";
                 $stmt = mysqli_stmt_init($conexion);
-                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                if (!mysqli_stmt_prepare($stmt, $sql1)) {
                     header("Location: ../usuario.php?error=sqlerror2");
                     exit();
                 } else {
-                    //HAY QUE CAMBIAR LA COLUMNA DE CONTRASEÑA POR UNA MÁS LARGA
-                    //Encriptar contraseña
-                    //$hashedPwd = password_hash($contrasena, PASSWORD_DEFAULT);
                     //Enlazamos
-                    mysqli_stmt_bind_param($stmt, "ssssiss", $contrasena, $nombre, $apellidos, $dni, $tel, $fecha, $email);
+                    mysqli_stmt_bind_param($stmt, "sssssss", $nombre, $apellidos, $dni, $tel, $fecha, $email, $usuario);
                     //Ejecutamos
                     mysqli_stmt_execute($stmt);
                     //Redirigimos
-                    header("Location: ../signup.php?usuario.php=success");
+                    header("Location: ../usuario.php?usuario.php=success");
                     exit();
-
                 }
             }
         }
-
     }
-
 } else {
     //Ingreso de otra parte
     header("Location: ../index.php?error=hucker");
