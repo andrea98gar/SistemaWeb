@@ -1,8 +1,8 @@
 <?php
 require "config.inc.php";
+session_start();
 if (isset($_POST['update-submit'])) {
     $usuario = $_SESSION['userId'];
-
     $nombre = $_POST['nombre'];
     $apellidos = $_POST['apellidos'];
     $dni = $_POST['dni'];
@@ -50,8 +50,8 @@ if (isset($_POST['update-submit'])) {
             // Cerramos el statement
             mysqli_stmt_close($stmt);
             // Comprobamos si hay usuarios con ese nombre de usuario
-            if ($resultCount > 0) {
-                header("Location: ../signup.php?error=usertaken");
+            if ($resultCount == 0) {
+                header("Location: ../usuario.php?error=usernotfound");
                 exit();
             } else {
                 // A partir de aquí se supone que el usuario ha hecho todo bien
