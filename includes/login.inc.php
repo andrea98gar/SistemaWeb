@@ -40,7 +40,7 @@ if (isset($_POST['login-submit'])) {
           session_start();
           $_SESSION['userId'] = $row['Usuario'];
           // Caduca en un año
-          setcookie('usuario', $row['Usuario'], time() + 365 * 24 * 60 * 60);
+          //setcookie('usuario', $row['Usuario'], time() + 365 * 24 * 60 * 60);
           header("Location: ../index.php?login=success");
           exit();
         }
