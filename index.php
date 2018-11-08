@@ -59,15 +59,59 @@
                           echo "<td>" .$bateria. "</td>";
                           echo "<td>" .$procesador. "</td>";
                           echo "<td>" .$precio. "</td>";
-                          echo "<td><button type='submit' name='fila".$i."'>Modificar</button></td>";
+                          echo "<td><button name='eli_".$modelo."'>Eliminar</button></td>";
+                          echo "</tr>";
+                          echo "<br>";
+
+                          echo "<tr id>";
+                          echo "<td> <input type='text' name='".$modelo."'placeholder='Modelo'></td>";
+                          echo "<td> <input type='text' name='ram_".$modelo."' placeholder='RAM'></td>";
+                          echo "<td> <input type='text' name='bat_".$modelo."' placeholder='Bateria'></td>";
+                          echo "<td> <input type='text' name='proc_".$modelo."' placeholder='Procesador'></td>";
+                          echo "<td> <input type='text' name='prec_".$modelo."' placeholder='Precio'></td>";
+                          echo "<td><button name='mod_".$modelo."'>Modificar</button></td>";
                           echo "</tr>";
                           echo "<br>";
                         }
-                    } else {
-                        echo "0 results";
                     }
-                    $_SESSION['cant'] = $i;
+
                    ?>
+
+                   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+                   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+                   <script type=text/javascript>
+
+                   //Evento que detecta el boton que se ha pulsado
+                   $(':button').click(function() {
+                      //Comprobamos segun el nombre si se desea eliminar o modificar
+                      if ($(this).attr('name').substr(0,4) == 'eli_'){ //Eliminar
+                       var buttonElementName = $(this).attr('name').substr(4); //Cogemos el nombre del producto
+                       if (confirm('Esta seguro de eliminar?')) {//Confirmacion de borrado
+                          //utilizando ajax pasamos el elemento que queremos eliminar al products.inc.php
+                          $.ajax({ url: 'includes/products.inc.php',
+                                 data: {productd: buttonElementName},
+                                 type: 'POST',
+                                 success: function(output) {
+                                      alert(output);
+                                  }
+                          });
+                        }
+
+                     }else{ //Modificar
+                       var buttonElementName = $(this).attr('name').substr(4);
+                       //alert (buttonElementName);
+                       $.ajax({ url: 'includes/products.inc.php',
+                              data: {productm: buttonElementName},
+                              type: 'POST',
+                              success: function(output) {
+                                   alert(output);
+                               }
+                       });
+                     }
+
+                  });
+
+                  </script>
 
                  </table>
 

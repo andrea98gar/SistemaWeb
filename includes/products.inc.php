@@ -1,13 +1,54 @@
 <?php
-//Saber cuantos productos hay
-if (isset($_POST['fila1'])) {
-  echo "hola";
+require "config.inc.php";
+//Modify productd
+if(isset($_POST['productm'])) {
+    $product = $_POST['productd'];
+    $sql2 = "DELETE FROM PRODUCTOS WHERE Modelo=?";
+        // echo "hola";
+        $stmt = mysqli_stmt_init($conexion);
+        // Comprobamos si hay algun problema con el comando sql
+        if (!mysqli_stmt_prepare($stmt, $sql2)) {
+          // Si hay un error, enviamos al usuario otra vez a la página de registro.
+          header("Location: ../index.php?error=sqlerror1");
+          exit();
+        }
+        else {
+          // Enlazamos los "?" con los datos que queramos.
+          // "s" -> "string", "i" -> "integer", "b" -> "blob", "d" -> "double".
+          echo $product;
+          mysqli_stmt_bind_param($stmt, "s", $product);
+          // Ejecutamos el comando
+          mysqli_stmt_execute($stmt);
+          // Guardamos el resultado
+        }
 }
 
+//Delete product
+if(isset($_POST['productd'])) {
+    $product = $_POST['productd'];
+    $sql2 = "DELETE FROM PRODUCTOS WHERE Modelo=?";
+        // echo "hola";
+        $stmt = mysqli_stmt_init($conexion);
+        // Comprobamos si hay algun problema con el comando sql
+        if (!mysqli_stmt_prepare($stmt, $sql2)) {
+          // Si hay un error, enviamos al usuario otra vez a la página de registro.
+          header("Location: ../index.php?error=sqlerror1");
+          exit();
+        }
+        else {
+          // Enlazamos los "?" con los datos que queramos.
+          // "s" -> "string", "i" -> "integer", "b" -> "blob", "d" -> "double".
+          echo $product;
+          mysqli_stmt_bind_param($stmt, "s", $product);
+          // Ejecutamos el comando
+          mysqli_stmt_execute($stmt);
+          // Guardamos el resultado
+        }
+}
+
+
+//Add product
 if (isset($_POST['product-submit'])) {
-
-  require "config.inc.php";
-
   $modelo = $_POST['modelo'];
   $ram = $_POST['ram'];
   $bateria = $_POST['bateria'];
