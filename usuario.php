@@ -1,10 +1,10 @@
 <?php
-  require "header.php";
-  require "includes/config.inc.php";
-  session_start();
+require "header.php";
+require "includes/config.inc.php";
+session_start();
 if (isset($_SESSION['userId'])) {
     $usuario = $_SESSION['userId'];
-    $sql = 'SELECT * FROM USUARIOS WHERE Usuario="'.$usuario.'"';
+    $sql = 'SELECT * FROM USUARIOS WHERE Usuario="' . $usuario . '"';
     $result = $conexion->query($sql);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
@@ -22,17 +22,17 @@ if (isset($_SESSION['userId'])) {
             <h1> Datos </h1>
               <form class="form-signup" action="includes/usuario.inc.php" method="post">
                 <label>Nombre</label><br>
-                <input type="text" name="nombre" value="'.$nombre.'" placeholder="Introduzca su nombre"><br><br>
+                <input type="text" name="nombre" value="' . $nombre . '" placeholder="Introduzca su nombre"><br><br>
                 <label>Apellidos</label><br>
-                <input type="text" name="apellidos" value="'.$apellidos.'" placeholder="Introduzca sus apellidos"><br><br>
+                <input type="text" name="apellidos" value="' . $apellidos . '" placeholder="Introduzca sus apellidos"><br><br>
                 <label>DNI</label><br>
-                <input type="text" name="dni"  value="'.$dni.'" placeholder="Introduzca su DNI"><br><br>
+                <input type="text" name="dni"  value="' . $dni . '" placeholder="Introduzca su DNI"><br><br>
                 <label>Teléfono</label><br>
-                <input type="tel" name="tel" value="'.$tel.'" placeholder="Introduzca su teléfono"><br><br>
+                <input type="tel" name="tel" value="' . $tel . '" placeholder="Introduzca su teléfono"><br><br>
                 <label>Fecha de nacimiento (dd-mm-aaaa)</label><br>
-                <input type="date" name="fecha" value="'.$fecha.'" placeholder="Introduzca su fecha de nacimiento"><br><br>
+                <input type="date" name="fecha" value="' . $fecha . '" placeholder="Introduzca su fecha de nacimiento"><br><br>
                 <label>E-mail</label><br>
-                <input type="email" name="email" value="'.$email.'" placeholder="Introduzca su e-mail"><br><br>
+                <input type="email" name="email" value="' . $email . '" placeholder="Introduzca su e-mail"><br><br>
                 <label>Contraseña</label><br>
                 <input type="password" name="contra1"  placeholder="Introduzca su contraseña"><br><br>
                 <label for="upass">Repita la contraseña</label><br>
@@ -45,13 +45,13 @@ if (isset($_SESSION['userId'])) {
     </main>';
 
 
-    }else{
+    } else {
         //Pruebas
         echo $sql;
     }
 
 
-}else {
+} else {
     echo 'error';
 }
 
