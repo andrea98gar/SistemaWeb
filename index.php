@@ -15,7 +15,7 @@
           <div class = "form-add-product">
 
             <form action="includes/products.inc.php" method="post">
-
+              
               <input type="text" name="modelo" placeholder="Modelo">
               <input type="text" name="ram" placeholder="RAM">
               <input type="text" name="bateria" placeholder="Bateria">
@@ -64,11 +64,11 @@
                           echo "<br>";
 
                           echo "<tr id>";
-                          echo "<td> <input type='text' name='".$modelo."'placeholder='Modelo'></td>";
-                          echo "<td> <input type='text' name='ram_".$modelo."' placeholder='RAM'></td>";
-                          echo "<td> <input type='text' name='bat_".$modelo."' placeholder='Bateria'></td>";
-                          echo "<td> <input type='text' name='proc_".$modelo."' placeholder='Procesador'></td>";
-                          echo "<td> <input type='text' name='prec_".$modelo."' placeholder='Precio'></td>";
+                          echo "<td> <input type='text' name='".$modelo."' value=$modelo placeholder='Modelo'></td>";
+                          echo "<td> <input type='text' name='ram_".$modelo."' value=$ram placeholder='RAM'></td>";
+                          echo "<td> <input type='text' name='bat_".$modelo."' value=$bateria placeholder='Bateria'></td>";
+                          echo "<td> <input type='text' name='proc_".$modelo."' value=$procesador placeholder='Procesador'></td>";
+                          echo "<td> <input type='text' name='prec_".$modelo."'value=$precio placeholder='Precio'></td>";
                           echo "<td><button name='mod_".$modelo."'>Modificar</button></td>";
                           echo "</tr>";
                           echo "<br>";
@@ -99,22 +99,25 @@
 
                      }else{ //Modificar
                        var buttonElementName = $(this).attr('name').substr(4);
+                       var modelo = $("input[name="+buttonElementName+"]").val();
+                       var ram = $("input[name=ram_"+buttonElementName+"]").val();
+                       var bat = $("input[name=bat_"+buttonElementName+"]").val();
+                       var proc = $("input[name=proc_"+buttonElementName+"]").val();
+                       var prec = $("input[name=prec_"+buttonElementName+"]").val();
+
                        //alert (buttonElementName);
                        $.ajax({ url: 'includes/products.inc.php',
-                              data: {productm: buttonElementName},
+                              data: {productm: buttonElementName, pmodelo: modelo, pram: ram, pbat: bat, pproc: proc, pprec: prec},
                               type: 'POST',
                               success: function(output) {
                                    alert(output);
                                }
                        });
                      }
-
                   });
 
                   </script>
-
                  </table>
-
                </form>
           </div>
 

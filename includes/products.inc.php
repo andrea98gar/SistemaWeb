@@ -1,9 +1,17 @@
 <?php
 require "config.inc.php";
-//Modify productd
+
+//Modify productm
 if(isset($_POST['productm'])) {
-    $product = $_POST['productd'];
-    $sql2 = "DELETE FROM PRODUCTOS WHERE Modelo=?";
+    $product_act = $_POST['productm'];
+    $product_new = $_POST['pmodelo'];
+    $ram_new = $_POST['pram'];
+    $bat_new = $_POST['pbat'];
+    $proc_new = $_POST['pproc'];;
+    $prec_new = $_POST['pprec'];;
+
+    $sql2 = "UPDATE PRODUCTOS SET Modelo = ?, RAM = ?, Bateria = ?, Procesador = ?, Precio = ?  WHERE Modelo = ?";
+
         // echo "hola";
         $stmt = mysqli_stmt_init($conexion);
         // Comprobamos si hay algun problema con el comando sql
@@ -15,15 +23,14 @@ if(isset($_POST['productm'])) {
         else {
           // Enlazamos los "?" con los datos que queramos.
           // "s" -> "string", "i" -> "integer", "b" -> "blob", "d" -> "double".
-          echo $product;
-          mysqli_stmt_bind_param($stmt, "s", $product);
+          mysqli_stmt_bind_param($stmt, "ssssss", $product_new, $ram_new, $bat_new, $proc_new, $prec_new, $product_act);
           // Ejecutamos el comando
           mysqli_stmt_execute($stmt);
           // Guardamos el resultado
         }
 }
 
-//Delete product
+//Delete productd
 if(isset($_POST['productd'])) {
     $product = $_POST['productd'];
     $sql2 = "DELETE FROM PRODUCTOS WHERE Modelo=?";
