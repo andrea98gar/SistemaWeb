@@ -1,35 +1,35 @@
 <?php
-  //Esto nos permite guardar variables de sesion (identificación)
-  session_start();
+//Esto nos permite guardar variables de sesion (identificación)
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta name = "description" content="Web">
+    <meta name="description" content="Web">
     <meta name="viewport" content="with=device-width, initial-scale=1">
-    <title> </title>
+    <title></title>
     <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
+</head>
+<body>
 
 
-    <header>
-      <nav class="nav-header-main">
-        <a  class="header-logo" href="index.php">
-          <img src="img/logo.png" alt="logo">
+<header>
+    <nav class="nav-header-main">
+        <a class="header-logo" href="index.php">
+            <img src="img/logo.png" alt="logo">
         </a>
         <ul>
-          <li><a  href="index.php"> COMPUSHOP </a></li>
-          <!-- <li><a  href="#"> Otro </a></li>
-          <li><a  href="#"> Otro2 </a></li>
-          <li><a  href="#"> Otro3 </a></li> -->
+            <li><a href="index.php"> COMPUSHOP </a></li>
+            <!-- <li><a  href="#"> Otro </a></li>
+            <li><a  href="#"> Otro2 </a></li>
+            <li><a  href="#"> Otro3 </a></li> -->
         </ul>
-        </nav>
-        <div class = "header-login">
-          <?php
-              if (!isset($_SESSION['userId'])) {
-                  echo '
+    </nav>
+    <div class="header-login">
+        <?php
+        if (!isset($_SESSION['userId'])) {
+            echo '
                     <form action="includes/login.inc.php" method="post">
                       <input type="text" name="usuario" placeholder="Usuario">
                       <input type="password" name="contra" placeholder="Constraseña">
@@ -38,17 +38,17 @@
                     <div class="header-signup">
                       <a href="signup.php"> Registro </a>
                     </div>';
-              }else if (isset($_SESSION['userId'])) {
-                  echo '
+        } else if (isset($_SESSION['userId'])) {
+            echo '
                     <form action="usuario.php" method="post">
                       <button type="submit" name="config-submit"> Configuración </button>
                     </form>
                     <form action="includes/logout.inc.php" method="post">
                       <button type="submit" name="logout-submit"> Cerrar Sesión </button>
                     </form>';
-              }
-            ?>
-        </div>
-      </header>
-    </body>
+        }
+        ?>
+    </div>
+</header>
+</body>
 </html>
