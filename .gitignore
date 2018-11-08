@@ -2,3 +2,5 @@
 *.xml
 
 *.iml
+
+includes/config\.inc\.php
