@@ -39,6 +39,8 @@ if (isset($_SESSION['userId'])) {
     }
 
 } else {
-    echo 'error';
+    //Ingreso desde otra parte
+    header("Location: ../index.php?error=hucker");
+    exit();
 }
 ?>

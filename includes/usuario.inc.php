@@ -74,7 +74,7 @@ if (isset($_POST['update-submit'])) {
         }
     }
 } else {
-    //Ingreso de otra parte
+    //Ingreso desde otra parte
     header("Location: ../index.php?error=hucker");
     exit();
 }

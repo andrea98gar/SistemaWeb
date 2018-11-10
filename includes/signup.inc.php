@@ -5,7 +5,7 @@ if (isset($_POST['signup-submit'])) {
     require "config.inc.php";
 
     //Se obtienen los campos del usuario
-    $usuario = mysqli_real_escape_string($conexion,  $_POST['usuario']);
+    $usuario = mysqli_real_escape_string($conexion, $_POST['usuario']);
     $contrasena = mysqli_real_escape_string($conexion, $_POST['contra1']);
     $contrasena2 = mysqli_real_escape_string($conexion, $_POST['contra2']);
     $nombre = mysqli_real_escape_string($conexion, $_POST['nombre']);
@@ -87,9 +87,6 @@ if (isset($_POST['signup-submit'])) {
             }
         }
     }
-
-
-    // Cerramos el statement y la conexion con la db
 } else {
     // Si el usuario trata de acceder a esta página de alguna manera inapropiada
     header("Location: ../signup.php");

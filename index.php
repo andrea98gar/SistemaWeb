@@ -5,10 +5,11 @@ require "header.php";
 <!-- Detectar botón pulsado con jquery: https://api.jquery.com/click/ -->
 <!-- Obtener los valores de un campo por su nombre: https://stackoverflow.com/questions/2109472/how-to-get-a-value-of-an-element-by-name-instead-of-id -->
 <!-- Utilizar ajax: https://blog.endeos.com/usando-ajax-con-php-y-jquery/ -->
+<!-- Estructura basada en el tutorial de youtube : https://www.youtube.com/watch?v=LC9GaXkdxF8-->
 <main>
     <div class="wrapper-main">
         <section class="section-default">
-
+            <h1> Productos </h1>
             <!-- Añadir productos  -->
             <div class="form-add-product">
                 <form action="includes/products.inc.php" method="post">
@@ -25,7 +26,7 @@ require "header.php";
             <div class="table-show-products">
                 <form action="includes/products.inc.php" method="post">
 
-                  <!-- Generamos la primera fila de la tabla con los títulos correspondientes -->
+                    <!-- Generamos la primera fila de la tabla con los títulos correspondientes -->
                     <table>
                         <tr>
                             <th>Modelo</th>

@@ -12,7 +12,6 @@ if (isset($_POST['login-submit'])) {
         header("Location: ../index.php?error=emptyfields");
         exit();
     } else {
-
         //Se comprueba si el usuario está en registrado en el sistema
         $sql = "SELECT * FROM USUARIOS WHERE Usuario='" . $usuario . "'";
         $result = $conexion->query($sql);
@@ -33,8 +32,8 @@ if (isset($_POST['login-submit'])) {
             exit();
         }
     }
-
+    //Acceso desde un sitio incorrecto
 } else {
-    header("Location: ../sfdsf.php");
+    header("Location: ../index.php?error=hucker");
     exit();
 }

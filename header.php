@@ -38,7 +38,7 @@ session_start();
                       <a href="signup.php"> Registro </a>
                     </div>';
 
-        //Si se ha iniciado sesión el header mostrará la posibilidad cambiar la configuración del usuario y cerrar sesión
+            //Si se ha iniciado sesión el header mostrará la posibilidad cambiar la configuración del usuario y cerrar sesión
         } else if (isset($_SESSION['userId'])) {
             echo '
                     <form action="usuario.php" method="post">
