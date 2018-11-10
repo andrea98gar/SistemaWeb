@@ -3,8 +3,9 @@ if (isset($_POST['login-submit'])) {
 
     require "config.inc.php";
     session_start();
-    $usuario = $_POST['usuario'];
-    $contrasena = $_POST['contra'];
+    $usuario = mysqli_real_escape_string($conexion, $_POST["usuario"]);
+
+    $contrasena = mysqli_real_escape_string($conexion, $_POST['contra']);
 
     if (empty($usuario) || empty($contrasena)) {
         header("Location: ../index.php?error=emptyfields");

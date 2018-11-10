@@ -3,7 +3,7 @@ require "header.php";
 require "includes/config.inc.php";
 session_start();
 if (isset($_SESSION['userId'])) {
-    $usuario = $_SESSION['userId'];
+    $usuario = mysqli_real_escape_string($conexion, $_SESSION['userId']);
     $sql = 'SELECT * FROM USUARIOS WHERE Usuario="' . $usuario . '"';
     $result = $conexion->query($sql);
     if ($result->num_rows > 0) {

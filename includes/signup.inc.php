@@ -4,15 +4,15 @@ if (isset($_POST['signup-submit'])) {
 
     require "config.inc.php";
 
-    $usuario = $_POST['usuario'];
-    $contrasena = $_POST['contra1'];
-    $contrasena2 = $_POST['contra2'];
-    $nombre = $_POST['nombre'];
-    $apellidos = $_POST['apellidos'];
-    $dni = $_POST['dni'];
-    $tel = $_POST['telefono'];
-    $fecha = $_POST['fecha'];
-    $email = $_POST['email'];
+    $usuario = mysqli_real_escape_string($conexion,  $_POST['usuario']);
+    $contrasena = mysqli_real_escape_string($conexion, $_POST['contra1']);
+    $contrasena2 = mysqli_real_escape_string($conexion, $_POST['contra2']);
+    $nombre = mysqli_real_escape_string($conexion, $_POST['nombre']);
+    $apellidos = mysqli_real_escape_string($conexion, $_POST['apellidos']);
+    $dni = mysqli_real_escape_string($conexion, $_POST['dni']);
+    $tel = mysqli_real_escape_string($conexion, $_POST['telefono']);
+    $fecha = mysqli_real_escape_string($conexion, $_POST['fecha']);
+    $email = mysqli_real_escape_string($conexion, $_POST['email']);
 
 
     //Comprobar DNI

@@ -3,12 +3,12 @@ require "config.inc.php";
 
 //Modify productm
 if (isset($_POST['productm'])) {
-    $product_act = $_POST['productm'];
-    $product_new = $_POST['pmodelo'];
-    $ram_new = $_POST['pram'];
-    $bat_new = $_POST['pbat'];
-    $proc_new = $_POST['pproc'];
-    $prec_new = $_POST['pprec'];
+    $product_act = mysqli_real_escape_string($conexion, $_POST['productm']);
+    $product_new = mysqli_real_escape_string($conexion, $_POST['pmodelo']);
+    $ram_new = mysqli_real_escape_string($conexion, $_POST['pram']);
+    $bat_new = mysqli_real_escape_string($conexion, $_POST['pbat']);
+    $proc_new = mysqli_real_escape_string($conexion, $_POST['pproc']);
+    $prec_new = mysqli_real_escape_string($conexion, $_POST['pprec']);
 
     $sql2 = "UPDATE PRODUCTOS SET Modelo = ?, RAM = ?, Bateria = ?, Procesador = ?, Precio = ?  WHERE Modelo = ?";
 

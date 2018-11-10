@@ -2,13 +2,13 @@
 require "config.inc.php";
 session_start();
 if (isset($_POST['update-submit'])) {
-    $usuario = $_SESSION['userId'];
-    $nombre = $_POST['nombre'];
-    $apellidos = $_POST['apellidos'];
-    $dni = $_POST['dni'];
-    $tel = $_POST['telefono'];
-    $fecha = $_POST['fecha'];
-    $email = $_POST['email'];
+    $usuario = mysqli_real_escape_string($conexion, $_SESSION['userId']);
+    $nombre = mysqli_real_escape_string($conexion, $_POST['nombre']);
+    $apellidos = mysqli_real_escape_string($conexion, $_POST['apellidos']);
+    $dni = mysqli_real_escape_string($conexion, $_POST['dni']);
+    $tel = mysqli_real_escape_string($conexion, $_POST['telefono']);
+    $fecha = mysqli_real_escape_string($conexion, $_POST['fecha']);
+    $email = mysqli_real_escape_string($conexion, $_POST['email']);
 
     //Comprobar DNI
     $num = substr($dni, 0, 8);
