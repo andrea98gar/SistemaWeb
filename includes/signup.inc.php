@@ -1,9 +1,10 @@
 <?php
-
+//Registro
 if (isset($_POST['signup-submit'])) {
 
     require "config.inc.php";
 
+    //Se obtienen los campos del usuario
     $usuario = mysqli_real_escape_string($conexion,  $_POST['usuario']);
     $contrasena = mysqli_real_escape_string($conexion, $_POST['contra1']);
     $contrasena2 = mysqli_real_escape_string($conexion, $_POST['contra2']);
@@ -15,10 +16,9 @@ if (isset($_POST['signup-submit'])) {
     $email = mysqli_real_escape_string($conexion, $_POST['email']);
 
 
-    //Comprobar DNI
+    //Se comprueba que la letra del dni es correcta
     $num = substr($dni, 0, 8);
     $char = substr($dni, -1);
-
     $resto = $num % 23;
     if (!($resto == 0 && $char == 'T') && !($resto == 1 && $char == 'R') && !($resto == 2 && $char == 'W') && !($resto == 3 && $char == 'A') &&
         !($resto == 4 && $char == 'G') && !($resto == 5 && $char == 'M') && !($resto == 6 && $char == 'Y') && !($resto == 7 && $char == 'F') &&
@@ -31,19 +31,16 @@ if (isset($_POST['signup-submit'])) {
     }
 
 
-    //Comprobar que todos los campos estén rellenos
+    //Se comprueba que todos los campos estén rellenos
     if (empty($usuario) || empty($email) || empty($contrasena) || empty($contrasena2)
         || empty($nombre) || empty($apellidos) || empty($dni) || empty($tel) || empty($fecha)) {
         header("Location: ../signup.php?error=emptyfields");
         exit();
     } else if ($contrasena !== $contrasena2) {
-        //header("Location: ../signup.php?error=passwordcheck&uid=".$username."&mail=".$email);
-
         header("Location: ../signup.php?error=passwordcheck");
         exit();
     } else {
 
-        //Para evitar sqlinjection
         $sql = "SELECT * FROM USUARIOS WHERE Usuario=?";
 
         $stmt = mysqli_stmt_init($conexion);
@@ -69,7 +66,7 @@ if (isset($_POST['signup-submit'])) {
                 header("Location: ../signup.php?error=usertaken");
                 exit();
             } else {
-                // A partir de aquí se supone que el usuario ha hecho todo bien
+                // Si no hay ningún usuario con el mismo nombre de usuario se añade.
 
                 $sql = "INSERT INTO USUARIOS  VALUES (?, ?, ?,?,?,?,?,?)";
 
@@ -79,7 +76,7 @@ if (isset($_POST['signup-submit'])) {
                     exit();
                 } else {
                     //Enlazamos
-                    mysqli_stmt_bind_param($stmt, "sssssiss", $usuario, $contrasena, $nombre, $apellidos, $dni, $tel, $fecha, $email);
+                    mysqli_stmt_bind_param($stmt, "ssssssss", $usuario, $contrasena, $nombre, $apellidos, $dni, $tel, $fecha, $email);
                     //Ejecutamos
                     mysqli_stmt_execute($stmt);
                     //Redirigimos

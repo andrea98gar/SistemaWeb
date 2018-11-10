@@ -2,6 +2,7 @@
 require "config.inc.php";
 session_start();
 if (isset($_POST['update-submit'])) {
+    //Se obtienen los campos del usuario
     $usuario = mysqli_real_escape_string($conexion, $_SESSION['userId']);
     $nombre = mysqli_real_escape_string($conexion, $_POST['nombre']);
     $apellidos = mysqli_real_escape_string($conexion, $_POST['apellidos']);
@@ -10,10 +11,9 @@ if (isset($_POST['update-submit'])) {
     $fecha = mysqli_real_escape_string($conexion, $_POST['fecha']);
     $email = mysqli_real_escape_string($conexion, $_POST['email']);
 
-    //Comprobar DNI
+    //Se comprueba que la letra del dni es correcta
     $num = substr($dni, 0, 8);
     $char = substr($dni, -1);
-
     $resto = $num % 23;
     if (!($resto == 0 && $char == 'T') && !($resto == 1 && $char == 'R') && !($resto == 2 && $char == 'W') && !($resto == 3 && $char == 'A') &&
         !($resto == 4 && $char == 'G') && !($resto == 5 && $char == 'M') && !($resto == 6 && $char == 'Y') && !($resto == 7 && $char == 'F') &&
@@ -25,6 +25,7 @@ if (isset($_POST['update-submit'])) {
         exit();
     }
 
+    //Se comprueba que todos los campos estén rellenos
     if (empty($email) || empty($nombre) || empty($apellidos) || empty($dni) || empty($tel) || empty($fecha)) {
         header("Location: ../usuario.php?error=emptyfields");
         exit();
@@ -54,7 +55,7 @@ if (isset($_POST['update-submit'])) {
                 header("Location: ../usuario.php?error=usernotfound");
                 exit();
             } else {
-                // A partir de aquí se supone que el usuario ha hecho todo bien
+                // Se actualizan los datos del usuario
                 $sql1 = "UPDATE USUARIOS SET Nombre = ?, Apellidos = ?, DNI = ?, Tel = ?, Fecha = ?, email = ? WHERE Usuario = ?";
                 $stmt = mysqli_stmt_init($conexion);
                 if (!mysqli_stmt_prepare($stmt, $sql1)) {

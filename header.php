@@ -21,13 +21,12 @@ session_start();
         </a>
         <ul>
             <li><a href="index.php"> COMPUSHOP </a></li>
-            <!-- <li><a  href="#"> Otro </a></li>
-            <li><a  href="#"> Otro2 </a></li>
-            <li><a  href="#"> Otro3 </a></li> -->
         </ul>
     </nav>
     <div class="header-login">
         <?php
+        //Comprobamos si se ha iniciado sesión
+        //Si no ha iniciado sesión el header mostrará la posibilidad de loguearse y/o registrarse
         if (!isset($_SESSION['userId'])) {
             echo '
                     <form action="includes/login.inc.php" method="post">
@@ -38,6 +37,8 @@ session_start();
                     <div class="header-signup">
                       <a href="signup.php"> Registro </a>
                     </div>';
+
+        //Si se ha iniciado sesión el header mostrará la posibilidad cambiar la configuración del usuario y cerrar sesión
         } else if (isset($_SESSION['userId'])) {
             echo '
                     <form action="usuario.php" method="post">
