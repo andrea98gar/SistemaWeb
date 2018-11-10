@@ -112,10 +112,6 @@ if (isset($_POST['product-submit'])) {
         }
     }
 
-
-    // Cerramos el statement y la conexion con la db
-    mysqli_stmt_close($stmt);
-    mysqli_close($conexion);
 } else {
     // Si el usuario trata de acceder a esta página de alguna manera inapropiada
     header("Location: ../index.php");

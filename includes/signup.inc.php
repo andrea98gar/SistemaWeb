@@ -78,11 +78,8 @@ if (isset($_POST['signup-submit'])) {
                     header("Location: ../signup.php?error=sqlerror2");
                     exit();
                 } else {
-                    //HAY QUE CAMBIAR LA COLUMNA DE CONTRASEÑA POR UNA MÁS LARGA
-                    //Encriptar contraseña
-                    //$hashedPwd = password_hash($contrasena, PASSWORD_DEFAULT);
                     //Enlazamos
-                    mysqli_stmt_bind_param($stmt, "sssssiss", $usuario, $contrasena, $nombre, $apellidos, $resto, $tel, $fecha, $email);
+                    mysqli_stmt_bind_param($stmt, "sssssiss", $usuario, $contrasena, $nombre, $apellidos, $dni, $tel, $fecha, $email);
                     //Ejecutamos
                     mysqli_stmt_execute($stmt);
                     //Redirigimos
