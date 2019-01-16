@@ -24,6 +24,8 @@ require "header.php";
                 <input type="text" name="usuario" placeholder="Nombre de usuario" required><br><br>
                 <input type="password" name="contra1" placeholder="Contraseña" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required><br><br>
                 <input type="password" name="contra2" placeholder="Repita su contraseña" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required><br>
+            <!--<input type="password" name="contra1" placeholder="Contraseña"  required><br><br>
+                <input type="password" name="contra2" placeholder="Repita su contraseña" required><br>-->
                 <br><br>
 
                 <button type="submit" name="signup-submit"> Registrarse</button>
