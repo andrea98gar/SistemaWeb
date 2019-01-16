@@ -3,24 +3,25 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="description" content="Web">
     <meta name="viewport" content="with=device-width, initial-scale=1">
     <title></title>
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 
 
+
 <header>
+
+
     <nav class="nav-header-main">
-        <a class="header-logo" href="index.php">
-            <img src="img/logo.png" alt="logo">
-        </a>
         <ul>
-            <li><a href="index.php"> COMPUSHOP </a></li>
+           <li><a href="index.php"> COMPUSHOP </a></li>
         </ul>
     </nav>
     <div class="header-login">
@@ -30,8 +31,11 @@ session_start();
         if (!isset($_SESSION['userId'])) {
             echo '
                     <form action="includes/login.inc.php" method="post">
-                      <input type="text" name="usuario" placeholder="Usuario">
-                      <input type="password" name="contra" placeholder="Constraseña">
+                      <label for="usuario" class="visuallyhidden"> Usuario</label>
+                      <input type="text"  name="usuario" id="usuario" placeholder="Usuario">
+                      
+                      <label for="contra" class="visuallyhidden"> Contraseña</label>
+                      <input type="password" name="contra" id="contra" placeholder="Constraseña">
                       <button type="submit" name="login-submit"> Acceder </button>
                     </form>
                     <div class="header-signup">
@@ -51,5 +55,6 @@ session_start();
         ?>
     </div>
 </header>
+
 </body>
 </html>

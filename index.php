@@ -13,11 +13,22 @@ require "header.php";
             <!-- Añadir productos  -->
             <div class="form-add-product">
                 <form action="includes/products.inc.php" method="post">
-                    <input type="text" name="modelo" placeholder="Modelo">
-                    <input type="text" name="ram" placeholder="RAM">
-                    <input type="text" name="bateria" placeholder="Bateria">
-                    <input type="text" name="procesador" placeholder="Procesador">
-                    <input type="text" name="precio" placeholder="Precio">
+
+                    <label for="modelo" class="visuallyhidden"> Modelo</label>
+                    <input type="text" name="modelo" placeholder="Modelo" id="modelo">
+
+                    <label for="ram" class="visuallyhidden"> RAM</label>
+                    <input type="text" name="ram" placeholder="RAM" id="ram">
+
+                    <label for="bateria" class="visuallyhidden"> Bateria</label>
+                    <input type="text" name="bateria" placeholder="Bateria" id="bateria">
+
+                    <label for="procesador" class="visuallyhidden"> Procesador</label>
+                    <input type="text" name="procesador" placeholder="Procesador" id="procesador">
+
+                    <label for="precio" class="visuallyhidden"> Precio</label>
+                    <input type="text" name="precio" placeholder="Precio" id="precio">
+
                     <button type="submit" name="product-submit"> Añadir</button>
                 </form>
             </div>
@@ -34,7 +45,7 @@ require "header.php";
                             <th>Bateria</th>
                             <th>Procesador</th>
                             <th>Precio</th>
-                            <th></th>
+
                         </tr>
 
                         <?php
@@ -66,14 +77,15 @@ require "header.php";
                                 echo "</tr>";
                                 echo "<br>";
 
-
                                 //La segunda fila muestra un input por cada campo de producto
                                 echo "<tr id>";
-                                echo "<td> <input type='text' name='" . $modelo . "' value=$modelo placeholder='Modelo'></td>";
-                                echo "<td> <input type='text' name='ram_" . $modelo . "' value=$ram placeholder='RAM'></td>";
-                                echo "<td> <input type='text' name='bat_" . $modelo . "' value=$bateria placeholder='Bateria'></td>";
-                                echo "<td> <input type='text' name='proc_" . $modelo . "' value=$procesador placeholder='Procesador'></td>";
-                                echo "<td> <input type='text' name='prec_" . $modelo . "'value=$precio placeholder='Precio'></td>";
+
+                                echo "<label for='" . $modelo . "' class=\"visuallyhidden\"> Modelo</label>";
+                                echo "<td> <input type='text' name='" . $modelo . "' value=$modelo placeholder='Modelo' id='" . $modelo . "'></td>";
+                                echo "<td> <input type='text' name='ram_" . $modelo . "' value=$ram placeholder='RAM' id='" . $modelo . "'></td>";
+                                echo "<td> <input type='text' name='bat_" . $modelo . "' value=$bateria placeholder='Bateria' id='" . $modelo . "'></td>";
+                                echo "<td> <input type='text' name='proc_" . $modelo . "' value=$procesador placeholder='Procesador' id='" . $modelo . "'></td>";
+                                echo "<td> <input type='text' name='prec_" . $modelo . "' value=$precio placeholder='Precio' id='" . $modelo . "'></td>";
                                 //Se genera un botón para modificar
                                 echo "<td><button name='mod_" . $modelo . "'>Modificar</button></td>";
                                 echo "</tr>";
