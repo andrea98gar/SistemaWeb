@@ -17,7 +17,7 @@ if (isset($_POST['productm'])) {
     // Comprobamos si hay algun problema con el comando sql
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         // Si hay un error, enviamos al usuario otra vez a la página de registro.
-        header("Location: ../index.php?error=sqlerror1");
+        header("Location: ../productos.php?error=sqlerror1");
         exit();
     } else {
         // Enlazamos los "?" con los datos que queramos.
@@ -39,7 +39,7 @@ if (isset($_POST['productd'])) {
     // Comprobamos si hay algun problema con el comando sql
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         // Si hay un error, enviamos al usuario otra vez a la página de registro.
-        header("Location: ../index.php?error=sqlerror1");
+        header("Location: ../productos.php?error=sqlerror1");
         exit();
     } else {
         // Enlazamos los "?" con los datos que queramos.
@@ -64,7 +64,7 @@ if (isset($_POST['product-submit'])) {
     //Se comprueba que no haya ningún campo vacío
     if (empty($modelo) || empty($ram) || empty($bateria) || empty($procesador)
         || empty($precio)) {
-        header("Location: ../index.php?error=emptyfields");
+        header("Location: ../productos.php?error=emptyfields");
         exit();
     } else {
         $sql = "SELECT * FROM PRODUCTOS WHERE Modelo=?";
@@ -73,7 +73,7 @@ if (isset($_POST['product-submit'])) {
         // Comprobamos si hay algun problema con el comando sql
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             // Si hay un error, enviamos al usuario otra vez a la página de registro.
-            header("Location: ../index.php?error=sqlerror1");
+            header("Location: ../productos.php?error=sqlerror1");
             exit();
         } else {
             // Enlazamos los "?" con los datos que queramos.
@@ -89,7 +89,7 @@ if (isset($_POST['product-submit'])) {
             mysqli_stmt_close($stmt);
             // Comprobamos si hay productos con ese nombre
             if ($resultCount > 0) {
-                header("Location: ../index.php?error=productrepeat");
+                header("Location: ../productos.php?error=productrepeat");
                 exit();
             } else {
                 // Si el producto no existe en la base de datos entonces se añade.
@@ -97,7 +97,7 @@ if (isset($_POST['product-submit'])) {
 
                 $stmt = mysqli_stmt_init($conexion);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
-                    header("Location: ../index.php?error=sqlerror2");
+                    header("Location: ../productos.php?error=sqlerror2");
                     exit();
                 } else {
                     // Enlazamos los "?" con los datos que queramos.
@@ -106,7 +106,7 @@ if (isset($_POST['product-submit'])) {
                     //Ejecutamos
                     mysqli_stmt_execute($stmt);
                     //Redirigimos
-                    header("Location: ../index.php?productadd=success");
+                    header("Location: ../productos.php?productadd=success");
                     exit();
 
                 }
@@ -116,7 +116,7 @@ if (isset($_POST['product-submit'])) {
 
 } else {
     // Si el usuario trata de acceder a esta página de alguna manera inapropiada
-    header("Location: ../index.php");
+    header("Location: ../productos.php");
     exit();
 }
 

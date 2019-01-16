@@ -24,6 +24,8 @@ if (isset($_POST['login-submit'])) {
             } else {
                 //En una variable de sesión se guarda elusuario que se ha identificado.
                 $_SESSION['userId'] = $row['Usuario'];
+                $_SESSION['identificado'] = "si";
+                $_SESSION["ultimoAcceso"] = time();
                 header("Location: ../index.php?login=success");
                 exit();
             }
