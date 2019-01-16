@@ -45,12 +45,16 @@ session_start();
             //Si se ha iniciado sesión el header mostrará la posibilidad cambiar la configuración del usuario y cerrar sesión
         } else if (isset($_SESSION['userId'])) {
             echo '
+                    <form action="productos.php" method="post">
+                      <button type="submit" name="productos-submit"> Productos </button>
+                    </form>
                     <form action="usuario.php" method="post">
                       <button type="submit" name="config-submit"> Configuración </button>
                     </form>
                     <form action="includes/logout.inc.php" method="post">
                       <button type="submit" name="logout-submit"> Cerrar Sesión </button>
                     </form>';
+
         }
         ?>
     </div>
