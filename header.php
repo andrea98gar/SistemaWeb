@@ -14,12 +14,8 @@ session_start();
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-
 <body>
-
 <header>
-
-
     <nav class="nav-header-main">
         <ul>
             <li><a href="index.php"> COMPUSHOP </a></li>
@@ -57,7 +53,6 @@ session_start();
                     </form>';
 
         }
-
         function mostrarDato($dato)
         {
             echo $dato;
@@ -82,6 +77,5 @@ session_start();
         ?>
     </div>
 </header>
-
 </body>
 </html>
