@@ -24,7 +24,8 @@ if (isset($_POST['login-submit'])) {
         if ($row = $result->fetch_assoc()) {
 
             //Se comprueba que la contraseña obtenida de la BBDD coincida con la introducida
-            if ($contrasena !== $row['Contrasena']) {
+            $contraValida = password_verify($contrasena, $row['Contrasena']);
+            if ($contraValida == false) {
                 //Almacenar intento de conexion fallido
                 $intento = "Fallido";
                 if (!mysqli_stmt_prepare($stmt, $sql1)) {

@@ -1,5 +1,7 @@
 <?php
 //Esto nos permite guardar variables de sesion (identificación)
+ini_set('session.cookie_httponly', 1);
+ini_set('session.use_only_cookies', 1);
 session_start();
 ?>
 <!DOCTYPE html>
@@ -20,7 +22,7 @@ session_start();
 
     <nav class="nav-header-main">
         <ul>
-           <li><a href="index.php"> COMPUSHOP </a></li>
+            <li><a href="index.php"> COMPUSHOP </a></li>
         </ul>
     </nav>
     <div class="header-login">
@@ -56,7 +58,8 @@ session_start();
 
         }
 
-        function mostrarDato($dato){
+        function mostrarDato($dato)
+        {
             echo $dato;
         }
 
@@ -70,9 +73,9 @@ session_start();
 
             $tiempo = 60;
             //comparamos el tiempo transcurrido
-            if($tiempo_transcurrido > $tiempo) {//si pasa 1 minutos o más
+            if ($tiempo_transcurrido > $tiempo) {//si pasa 1 minutos o más
                 header("Location: includes/logout.inc.php");
-            }else { //sino, actualizo la fecha de la sesión
+            } else { //sino, actualizo la fecha de la sesión
                 $_SESSION["ultimoAcceso"] = $ahora;
             }
         }

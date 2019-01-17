@@ -75,8 +75,10 @@ if (isset($_POST['signup-submit'])) {
                     header("Location: ../signup.php?error=sqlerror2");
                     exit();
                 } else {
+                    //Encriptar
+                    $contrasenaEncriptada = password_hash($contrasena,PASSWORD_DEFAULT);
                     //Enlazamos
-                    mysqli_stmt_bind_param($stmt, "ssssssss", $usuario, $contrasena, $nombre, $apellidos, $dni, $tel, $fecha, $email);
+                    mysqli_stmt_bind_param($stmt, "ssssssss", $usuario, $contrasenaEncriptada, $nombre, $apellidos, $dni, $tel, $fecha, $email);
                     //Ejecutamos
                     mysqli_stmt_execute($stmt);
                     //Redirigimos
