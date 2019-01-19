@@ -1,5 +1,8 @@
 <?php
 
+if(isset($_POST['token']) AND $_POST['token'] != $_SESSION['token']){
+    header("Location: ../index.php?login=wrongtoken");
+}
 
 //Tranmisión segura de la cookie de sesión
 
@@ -23,4 +26,7 @@ if ($_SESSION["identificado"] == "si") {
         $_SESSION["ultimoAcceso"] = $ahora;
     }
 }
+
+
+
 

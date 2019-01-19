@@ -74,7 +74,7 @@ if (isset($_POST['signup-submit'])) {
             // Guardamos el número de rows afectadas
             $resultCount = mysqli_stmt_num_rows($stmt);
             // Cerramos el statement
-            mysqli_stmt_close($stmt);
+
             // Comprobamos si hay usuarios con ese nombre de usuario
             if ($resultCount > 0) {
                 header("Location: ../signup.php?error=usertaken");

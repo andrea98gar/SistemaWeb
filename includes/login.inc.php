@@ -60,6 +60,11 @@ if (isset($_POST['login-submit'])) {
                 //CIERRE DE SESIÓN TRAS 1 MINUTO DE INACTIVIDAD
                 $_SESSION['identificado'] = "si";
                 $_SESSION["ultimoAcceso"] = time();
+                $_SESSION["token"] = substr(sha1(mt_rand()), 0, 16);
+
+                echo '<form class="form-signup" action="includes/sesion.inc.php" method="post">';
+                echo '<input type="hidden" name="token" value="' . $_SESSION['token'] . '"><br><br>';
+                echo '</form>';
 
                 //Almacenar intento de conexion exitoso
                 $intento = "Exitoso";

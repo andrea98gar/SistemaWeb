@@ -42,8 +42,7 @@ if (isset($_SESSION['userId'])) {
                 <input type="date" name="fecha" value="' . $fecha . '" placeholder="Fecha de nacimiento (dd-mm-aaaa)" required><br><br>
                 <input type="email" name="email" value="' . $email . '" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><br><br>
                 <input type="text" name="cBancaria" value="' . $cBancariaDesencriptada . '" placeholder="Cuenta Bancaria" pattern="[0-9]{20}" required><br><br>
-                <input type="hidden" name="ivBancaria" value="' . $iv . '"<br><br>
-
+                <input type="hidden" name="ivBancaria" value="' . $iv . '"><br><br>
                 <br>
                 <button type="submit" name="update-submit">Modificar</button>
               </form>
