@@ -38,10 +38,10 @@ require "includes/sesion.inc.php";
                 <input type="text" name="usuario" placeholder="Nombre de usuario" id="user" required><br><br>
 
                 <label for="contra1" class="visuallyhidden"> Contra1</label>
-                <input type="password" name="contra1" placeholder="Contraseña" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" id="contra1" required><br><br>
+                <input type="password" name="contra1" placeholder="Contraseña" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" id="contra1" autocomplete="off" required ><br><br>
 
                 <label for="contra2" class="visuallyhidden"> Contra2</label>
-                <input type="password" name="contra2" placeholder="Repita su contraseña" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" id="contra2" required><br>
+                <input type="password" name="contra2" placeholder="Repita su contraseña" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" id="contra2" autocomplete="off" required><br>
             <!--<input type="password" name="contra1" placeholder="Contraseña"  required><br><br>
                 <input type="password" name="contra2" placeholder="Repita su contraseña" required><br>-->
                 <br><br>

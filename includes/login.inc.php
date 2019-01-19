@@ -58,7 +58,6 @@ if (isset($_POST['login-submit'])) {
                 //En una variable de sesión se guarda elusuario que se ha identificado.
                 $_SESSION['userId'] = $row['Usuario'];
                 //CIERRE DE SESIÓN TRAS 1 MINUTO DE INACTIVIDAD
-                $_SESSION['identificado'] = "si";
                 $_SESSION["ultimoAcceso"] = time();
                 $_SESSION["token"] = substr(sha1(mt_rand()), 0, 16);
 

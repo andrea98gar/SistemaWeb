@@ -45,7 +45,7 @@ require "includes/sesion.inc.php";
                       <input type="text"  name="usuario" id="usuario" placeholder="Usuario">
                       
                       <label for="contra" class="visuallyhidden"> Contraseña</label>
-                      <input type="password" name="contra" id="contra" placeholder="Constraseña">
+                      <input type="password" name="contra" id="contra" placeholder="Constraseña" autocomplete="off">
                       <button type="submit" name="login-submit"> Acceder </button>
                     </form>
                     <div class="header-signup">

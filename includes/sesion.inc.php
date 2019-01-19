@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_POST['token']) AND $_POST['token'] != $_SESSION['token']){
-    header("Location: ../index.php?login=wrongtoken");
+    header("Location: ../logout.inc.php?login=wrongtoken");
 }
 
 //Tranmisión segura de la cookie de sesión
@@ -12,17 +12,16 @@ session_start();
 
 /*http://www.forosdelweb.com/f18/como-cerrar-sesion-del-usuario-despues-10-min-inactividad-1014212/*/
 /*CIERRE DE SESIÓN TRAS 1 MINUTO DE INACTIVIDAD*/
-if ($_SESSION["identificado"] == "si") {
-    //sino, calculamos el tiempo transcurrido
+
+if (isset($_SESSION['userId'])) {
     $fechaGuardada = $_SESSION["ultimoAcceso"];
     $ahora = time();
     $tiempo_transcurrido = $ahora - $fechaGuardada;
-
     $tiempo = 60;
-    //comparamos el tiempo transcurrido
-    if ($tiempo_transcurrido > $tiempo) {//si pasa 1 minutos o más
+
+    if ($tiempo_transcurrido > $tiempo) {
         header("Location: includes/logout.inc.php");
-    } else { //sino, actualizo la fecha de la sesión
+    } else {
         $_SESSION["ultimoAcceso"] = $ahora;
     }
 }
