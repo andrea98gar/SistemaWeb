@@ -3,6 +3,8 @@
 if (isset($_POST['signup-submit'])) {
 
     require "config.inc.php";
+    require "sesion.inc.php";
+
 
     //Se obtienen los campos del usuario
     $usuario = mysqli_real_escape_string($conexion, $_POST['usuario']);
@@ -14,6 +16,18 @@ if (isset($_POST['signup-submit'])) {
     $tel = mysqli_real_escape_string($conexion, $_POST['telefono']);
     $fecha = mysqli_real_escape_string($conexion, $_POST['fecha']);
     $email = mysqli_real_escape_string($conexion, $_POST['email']);
+
+
+    //XSS
+    $usuario = htmlspecialchars($usuario, ENT_COMPAT);
+    $contrasena = htmlspecialchars($contrasena, ENT_COMPAT);
+    $contrasena2 = htmlspecialchars($contrasena2, ENT_COMPAT);
+    $nombre = htmlspecialchars($nombre, ENT_COMPAT);
+    $apellidos = htmlspecialchars($apellidos, ENT_COMPAT);
+    $dni = htmlspecialchars($dni, ENT_COMPAT);
+    $tel = htmlspecialchars($tel, ENT_COMPAT);
+    $fecha = htmlspecialchars($fecha, ENT_COMPAT);
+    $email = htmlspecialchars($email, ENT_COMPAT);
 
 
     //Se comprueba que la letra del dni es correcta
@@ -68,7 +82,7 @@ if (isset($_POST['signup-submit'])) {
             } else {
                 // Si no hay ningún usuario con el mismo nombre de usuario se añade.
 
-                $sql = "INSERT INTO USUARIOS  VALUES (?, ?, ?,?,?,?,?,?)";
+                $sql = "INSERT INTO USUARIOS  VALUES (?, ?, ?,?,?,?,?,?, ?)";
 
                 $stmt = mysqli_stmt_init($conexion);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -76,9 +90,17 @@ if (isset($_POST['signup-submit'])) {
                     exit();
                 } else {
                     //Encriptar
-                    $contrasenaEncriptada = password_hash($contrasena,PASSWORD_DEFAULT);
+                    //creamos la sal aletoria del usuario
+                    $sal = substr(sha1(mt_rand()), 0, 16);
+                    //hacemos el resumen criptográfico de la contraseña con la sal generada.
+                    $contrasenaEncriptada = crypt($contrasena, $sal);
+                    //lo concatenamos para guardarlo en la bd
+                    $contrasenEncriptada_SAL = "$sal:$contrasenaEncriptada";
+                    $cBancaria = 'null';
+                    $iv = substr(sha1(mt_rand()), 0, 16);
+                    $cBancaria_IV = "$iv:$cBancaria";
                     //Enlazamos
-                    mysqli_stmt_bind_param($stmt, "ssssssss", $usuario, $contrasenaEncriptada, $nombre, $apellidos, $dni, $tel, $fecha, $email);
+                    mysqli_stmt_bind_param($stmt, "sssssssss", $usuario, $contrasenEncriptada_SAL, $nombre, $apellidos, $dni, $tel, $fecha, $email, $cBancaria_IV);
                     //Ejecutamos
                     mysqli_stmt_execute($stmt);
                     //Redirigimos

@@ -1,5 +1,6 @@
 <?php
 require "header.php";
+require "includes/sesion.inc.php";
 ?>
 <!-- Para saber cómo son las tablas de html: https://www.w3schools.com/html/html_tables.asp -->
 <!-- Detectar botón pulsado con jquery: https://api.jquery.com/click/ -->

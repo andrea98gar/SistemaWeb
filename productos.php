@@ -1,6 +1,8 @@
 <?php
 require "header.php";
+require "includes/sesion.inc.php";
 ?>
+
 <!-- Para saber cómo son las tablas de html: https://www.w3schools.com/html/html_tables.asp -->
 <!-- Detectar botón pulsado con jquery: https://api.jquery.com/click/ -->
 <!-- Obtener los valores de un campo por su nombre: https://stackoverflow.com/questions/2109472/how-to-get-a-value-of-an-element-by-name-instead-of-id -->
@@ -50,7 +52,7 @@ require "header.php";
 
                         <?php
                         require "includes/config.inc.php";
-                        session_start();
+                        require "includes/sesion.inc.php";
                         //Obtenemos los productos guardados en la base de datos
                         $sql = "SELECT * FROM PRODUCTOS";
                         $result = $conexion->query($sql);

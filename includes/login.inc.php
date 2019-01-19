@@ -2,10 +2,16 @@
 if (isset($_POST['login-submit'])) {
     //Conexión con la base de datos
     require "config.inc.php";
-    session_start();
+    require "sesion.inc.php";
 
+
+    //SQL INJECTION
     $usuario = mysqli_real_escape_string($conexion, $_POST["usuario"]);
     $contrasena = mysqli_real_escape_string($conexion, $_POST['contra']);
+
+    //XSS
+    $usuario = htmlspecialchars($usuario, ENT_COMPAT);
+    $contrasena = htmlspecialchars($contrasena, ENT_COMPAT);
 
     //Se comprueba si hay algún campo vacío
     if (empty($usuario) || empty($contrasena)) {
@@ -22,10 +28,19 @@ if (isset($_POST['login-submit'])) {
         $sql = "SELECT * FROM USUARIOS WHERE Usuario='" . $usuario . "'";
         $result = $conexion->query($sql);
         if ($row = $result->fetch_assoc()) {
+            //obtenemos la contraseña de la bd
+            $contrasenaDB = $row['Contrasena'];
+            //separamos la información obtenida
+            $splitContrasenaBD = explode(':', $contrasenaDB);
+            //obtenemos la sal del usuario
+            $salBD = $splitContrasenaBD[0];
 
-            //Se comprueba que la contraseña obtenida de la BBDD coincida con la introducida
-            $contraValida = password_verify($contrasena, $row['Contrasena']);
-            if ($contraValida == false) {
+            //hacemos el resumen criptográfico de la contraseña con la sal obtenida.
+            $contrasenaEncriptada = crypt($contrasena, $salBD);
+            //concatenamos la el resumen criptográfico y la sal
+            $contrasenEncriptada_SAL = "$salBD:$contrasenaEncriptada";
+            //comprobamos si coinciden
+            if ($contrasenEncriptada_SAL != $contrasenaDB) {
                 //Almacenar intento de conexion fallido
                 $intento = "Fallido";
                 if (!mysqli_stmt_prepare($stmt, $sql1)) {

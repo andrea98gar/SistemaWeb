@@ -1,5 +1,6 @@
 <?php
 require "config.inc.php";
+require "sesion.inc.php";
 
 //Modificar producto
 if (isset($_POST['productm'])) {
@@ -10,6 +11,15 @@ if (isset($_POST['productm'])) {
     $bat_new = mysqli_real_escape_string($conexion, $_POST['pbat']);
     $proc_new = mysqli_real_escape_string($conexion, $_POST['pproc']);
     $prec_new = mysqli_real_escape_string($conexion, $_POST['pprec']);
+
+
+    //XSS
+    $product_act = htmlspecialchars($product_act, ENT_COMPAT);
+    $product_new = htmlspecialchars($product_new, ENT_COMPAT);
+    $ram_new = htmlspecialchars($ram_new, ENT_COMPAT);
+    $bat_new = htmlspecialchars($bat_new, ENT_COMPAT);
+    $proc_new = htmlspecialchars($proc_new, ENT_COMPAT);
+    $prec_new = htmlspecialchars($prec_new, ENT_COMPAT);
 
     $sql = "UPDATE PRODUCTOS SET Modelo = ?, RAM = ?, Bateria = ?, Procesador = ?, Precio = ?  WHERE Modelo = ?";
 

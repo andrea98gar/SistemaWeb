@@ -1,6 +1,7 @@
 <?php
 require "config.inc.php";
-session_start();
+require "sesion.inc.php";
+
 if (isset($_POST['update-submit'])) {
     //Se obtienen los campos del usuario
     $usuario = mysqli_real_escape_string($conexion, $_SESSION['userId']);
@@ -10,6 +11,19 @@ if (isset($_POST['update-submit'])) {
     $tel = mysqli_real_escape_string($conexion, $_POST['telefono']);
     $fecha = mysqli_real_escape_string($conexion, $_POST['fecha']);
     $email = mysqli_real_escape_string($conexion, $_POST['email']);
+    $cBancaria = mysqli_real_escape_string($conexion, $_POST['cBancaria']);
+    $iv = $_POST['ivBancaria'];
+
+
+    //XSS
+    $usuario = htmlspecialchars($usuario, ENT_COMPAT);
+    $nombre = htmlspecialchars($nombre, ENT_COMPAT);
+    $apellidos = htmlspecialchars($apellidos, ENT_COMPAT);
+    $dni = htmlspecialchars($dni, ENT_COMPAT);
+    $tel = htmlspecialchars($tel, ENT_COMPAT);
+    $fecha = htmlspecialchars($fecha, ENT_COMPAT);
+    $email = htmlspecialchars($email, ENT_COMPAT);
+    $cBancaria = htmlspecialchars($cBancaria, ENT_COMPAT);
 
     //Se comprueba que la letra del dni es correcta
     $num = substr($dni, 0, 8);
@@ -55,15 +69,23 @@ if (isset($_POST['update-submit'])) {
                 header("Location: ../usuario.php?error=usernotfound");
                 exit();
             } else {
+                //Encriptar cuenta bancaria
+                $cBancariaEncriptada = openssl_encrypt(
+                    "$cBancaria", 'aes-256-cbc', "$iv:$usuario", null, $iv
+                );
+
+                $cBancariaEncriptada_SAL = "$iv:$cBancariaEncriptada";
+
+
                 // Se actualizan los datos del usuario
-                $sql1 = "UPDATE USUARIOS SET Nombre = ?, Apellidos = ?, DNI = ?, Tel = ?, Fecha = ?, email = ? WHERE Usuario = ?";
+                $sql1 = "UPDATE USUARIOS SET Nombre = ?, Apellidos = ?, DNI = ?, Tel = ?, Fecha = ?, email = ?, cBancaria = ? WHERE Usuario = ?";
                 $stmt = mysqli_stmt_init($conexion);
                 if (!mysqli_stmt_prepare($stmt, $sql1)) {
                     header("Location: ../usuario.php?error=sqlerror2");
                     exit();
                 } else {
                     //Enlazamos
-                    mysqli_stmt_bind_param($stmt, "sssssss", $nombre, $apellidos, $dni, $tel, $fecha, $email, $usuario);
+                    mysqli_stmt_bind_param($stmt, "ssssssss", $nombre, $apellidos, $dni, $tel, $fecha, $email, $cBancariaEncriptada_SAL , $usuario);
                     //Ejecutamos
                     mysqli_stmt_execute($stmt);
                     //Redirigimos
