@@ -1,8 +1,9 @@
 <?php
-
+header('Content-Type: text/html');
+header("Cache-Control: no-store, no-cache, must-revalidate"); // HTTP/1.1
 header("X-Frame-Options: deny");
 header("X-XSS-Protection: 1; mode=block");
-header("X-Content-Type-Options: nosniff");
+header("X-Content-Type-Options: nosniff",false);
 
 //Esto nos permite guardar variables de sesion (identificación)
 require "includes/sesion.inc.php";
